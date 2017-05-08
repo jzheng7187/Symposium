@@ -1,10 +1,13 @@
 package main;
 
 import gui.GUIApplication;
+import gui.Screen;
 
 public class Game extends GUIApplication {
 
 	public static Game scr;
+	public static Screen IntroScreen;
+	public static Screen GameScreen;
 	
 	public Game(int width, int height) {
 		super(width, height);
@@ -12,8 +15,9 @@ public class Game extends GUIApplication {
 
 	@Override
 	public void initScreen() {
-		IntroScreen ss = new IntroScreen(getWidth(),getHeight());
-		setScreen(ss);
+		IntroScreen = new IntroScreen(getWidth(),getHeight());
+		GameScreen = new GameScreen(getWidth(),getHeight());
+		setScreen(IntroScreen);
 	}
 
 	public static void main(String[] args) {
