@@ -174,4 +174,11 @@ public abstract class Screen {
 			viewObjects.add(v);
 		}
 	}
+
+	public void drawBackground(Graphics2D g){
+		//Color c = new Color(180,225,50);
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, image.getWidth(), image.getHeight());
+	}
+	
 }
