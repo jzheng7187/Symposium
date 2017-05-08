@@ -2,12 +2,13 @@ package main;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 
-public class IntroScreen extends ClickableScreen {
+public class IntroScreen extends ClickableScreen implements MouseListener{
 
 	public IntroScreen(int width, int height) {
 		super(width, height);
@@ -25,4 +26,5 @@ public class IntroScreen extends ClickableScreen {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
