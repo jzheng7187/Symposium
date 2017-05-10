@@ -15,7 +15,7 @@ import gui.components.MovingComponent;
 import gui.components.TextArea;
 import gui.components.TextLabel;
 import gui.components.Visible;
-import gui.sampleGames.MouseCoordinateGame;
+//import gui.sampleGames.MouseCoordinateGame;
 
 public class CoordinateScreen extends Screen implements MouseMotionListener, MouseListener{
 
@@ -30,13 +30,13 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
-		button = new Button(20, 100, 80, 40, "Button", new Color(100,100,250), new Action() {
-			
-			@Override
-			public void act() {
-				MouseCoordinateGame.game.setScreen(MouseCoordinateGame.myScreen);
-			}
-		});
+//		button = new Button(20, 100, 80, 40, "Button", new Color(100,100,250), new Action() {
+//			
+//			@Override
+//			public void act() {
+//				MouseCoordinateGame.game.setScreen(MouseCoordinateGame.myScreen);
+//			}
+//		});
 		viewObjects.add(button);
 		text = new TextLabel(20, 150, 500, 40, "Some Text");
 		viewObjects.add(text);

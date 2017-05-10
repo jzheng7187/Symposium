@@ -5,10 +5,16 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import gui.Screen;
+import gui.components.TextLabel;
 import gui.components.Visible;
 
 public class GameScreen extends Screen implements KeyListener {
 
+	private int deltaX = 1;
+	private int deltaY = 1;
+	//private Sprite character;
+	private TextLabel text;
+	
 	public GameScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -16,12 +22,29 @@ public class GameScreen extends Screen implements KeyListener {
 
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
-		// TODO Auto-generated method stub
+		text = new TextLabel(20, 150, 500, 40, "Some Text");
+		viewObjects.add(text);
 
 	}
 
+	public KeyListener getKeyListener() {
+		return this;
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
+		int code = e.getKeyCode();
+			if(code == KeyEvent.VK_UP){
+				move(0,deltaY);
+			}else if(code == KeyEvent.VK_LEFT){
+				move(-deltaX,0);
+			}
+			else if(code == KeyEvent.VK_RIGHT){
+				move(deltaX,0);
+		}
+	}
+
+	private void move(int i, int j) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -35,6 +58,10 @@ public class GameScreen extends Screen implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void attack(){
 		
 	}
 

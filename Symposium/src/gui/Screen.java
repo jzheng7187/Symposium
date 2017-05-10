@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
@@ -179,6 +180,11 @@ public abstract class Screen {
 		//Color c = new Color(180,225,50);
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, image.getWidth(), image.getHeight());
+	}
+
+	public KeyListener getKeyListener() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
