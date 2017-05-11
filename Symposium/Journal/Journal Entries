@@ -20,3 +20,8 @@ sheets. There is also the fact that I started to think of what kind of Listeners
 5/10/17
 Today I made my 2 screens connect and I will continue to research some stuff for animations. I decided to change from having 
 KeyListeners on the introduction screen and made it so that the game screen is the one that utilizes the KeyListeners.
+
+5/11/17
+Today I found an image for the intro screen. But I didn't know how to utilize it. So I took a suggestion from Hunter to make a 
+Background class, so that I can utilize the background. Using this method, however, will make it so that the background would be 
+in the front and not in the back like it is intended to.

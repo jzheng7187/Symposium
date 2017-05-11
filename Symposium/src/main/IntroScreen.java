@@ -2,8 +2,10 @@ package main;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import gui.Screen;
@@ -15,6 +17,8 @@ import gui.screens.ClickableScreen;
 
 public class IntroScreen extends ClickableScreen implements MouseListener{
 	
+	
+	private BufferedImage image;
 	private Button button;
 	private TextArea text;
 	
@@ -77,4 +81,11 @@ public class IntroScreen extends ClickableScreen implements MouseListener{
 		
 	}
 	
+//	public void update(){
+//		Graphics2D g = image.createGraphics();
+//		//smooth the graphics
+//		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//		drawBackground(g);
+//		g.setColor(Color.black);
+//	}
 }
