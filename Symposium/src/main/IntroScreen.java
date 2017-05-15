@@ -1,16 +1,14 @@
 package main;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import gui.Screen;
 import gui.components.Action;
 import gui.components.Button;
+import gui.components.Graphic;
 import gui.components.TextArea;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
@@ -21,17 +19,11 @@ public class IntroScreen extends ClickableScreen implements MouseListener{
 	private BufferedImage image;
 	private Button button;
 	private TextArea text;
+	private Graphic background;
 	
 	
 	public IntroScreen(int width, int height) {
 		super(width, height);
-	}
-
-	@Override
-	public void drawBackground(Graphics2D g){
-		Color c = new Color(0,0,255);
-		g.setColor(c);
-		g.fillRect(0, 0, getWidth(), getHeight());
 	}
 	
 	@Override
@@ -68,6 +60,8 @@ public class IntroScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
+		background = new Graphic(0, 0, 800, 800, "resources/background1.png");
+		viewObjects.add(background);
 		button = new Button(225, 375, 350, 200, "Button", new Color(100,100,250), new Action() {
 			
 			@Override

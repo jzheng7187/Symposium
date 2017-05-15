@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -59,6 +61,13 @@ public class GameScreen extends Screen implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void drawBackground(Graphics2D g){
+		Color c = new Color(0,0,255);
+		g.setColor(c);
+		g.fillRect(0, 0, 800, 800);
 	}
 	
 	public void attack(){
