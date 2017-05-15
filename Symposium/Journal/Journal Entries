@@ -25,3 +25,6 @@ KeyListeners on the introduction screen and made it so that the game screen is t
 Today I found an image for the intro screen. But I didn't know how to utilize it. So I took a suggestion from Hunter to make a 
 Background class, so that I can utilize the background. Using this method, however, will make it so that the background would be 
 in the front and not in the back like it is intended to.
+
+5/15/17
+I made some new classes, but I had to use a new computer because I wasn't able to get the data from my previous one to work. 
