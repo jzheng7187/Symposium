@@ -4,6 +4,8 @@ public class Enemy {
 
 	private static int hpoints;
 	private boolean isAlive;
+	private int x = 800;
+	private int deltaX = -15;
 	
 	public static void main(String[] args) {
 		hpoints = (Math.random() * 6) + 1;
