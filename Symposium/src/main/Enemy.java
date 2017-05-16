@@ -1,11 +1,12 @@
 package main;
 
-public class Enemy {
+public class Enemy implements ActionListener{
 
 	private static int hpoints;
 	private boolean isAlive;
 	private int x = 800;
 	private int deltaX = -15;
+	Timer tm = new Timer(5,this);
 	
 	public static void main(String[] args) {
 		hpoints = (Math.random() * 6) + 1;
@@ -31,5 +32,9 @@ public class Enemy {
 		while(isAlive){
 			//move method
 		}
+	}
+	
+	public void ActionPerformed(ActionEvent e){
+		x = x + deltaX;
 	}
 }
