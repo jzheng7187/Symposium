@@ -28,7 +28,7 @@ public class Player implements ActionListener, KeyListener{
 	
 	public void death(){
 		if(isAlive == false){
-			game.GameOver();
+			gameScreen.GameOver();
 			//change screen to ending screen
 		}
 	}
@@ -44,5 +44,7 @@ public class Player implements ActionListener, KeyListener{
 		){
 			x = x + deltaX;
 		}
-			
+	}
+	
+	
 }
