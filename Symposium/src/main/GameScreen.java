@@ -70,8 +70,8 @@ public class GameScreen extends Screen implements KeyListener {
 		g.fillRect(0, 0, 800, 800);
 	}
 	
-	public void attack(){
-		
+	public void gameOver(){
+		//changeScreen
 	}
 
 }
