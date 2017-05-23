@@ -50,4 +50,12 @@ public class Player implements ActionListener, KeyListener{
 		
 	}
 	
+	public void getHP(){
+		return this.hpoints;
+	}
+	
+	public void setHP(){
+		this.hpoints = 100;
+	}
+	
 }
