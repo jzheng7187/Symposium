@@ -46,5 +46,8 @@ public class Player implements ActionListener, KeyListener{
 		}
 	}
 	
+	public void attack(){
+		
+	}
 	
 }
