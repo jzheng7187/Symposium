@@ -12,6 +12,8 @@ import gui.components.Visible;
 
 public class GameScreen extends Screen implements KeyListener {
 
+	private int x = 15;
+	private int y = 450;
 	private int deltaX = 1;
 	private int deltaY = 1;
 	//private Sprite character;
@@ -47,8 +49,8 @@ public class GameScreen extends Screen implements KeyListener {
 	}
 
 	private void move(int i, int j) {
-		// TODO Auto-generated method stub
-		
+		int x = i + x;
+		int y = j + y;
 	}
 
 	@Override
@@ -61,6 +63,10 @@ public class GameScreen extends Screen implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void HealthBar(){
+		//show healthbar
 	}
 	
 	@Override
