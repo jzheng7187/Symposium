@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import gui.Screen;
+import gui.components.Action;
+import gui.components.Button;
 import gui.components.TextLabel;
 import gui.components.Visible;
 
@@ -18,6 +20,7 @@ public class GameScreen extends Screen implements KeyListener {
 	private int deltaY = 1;
 	//private Sprite character;
 	private TextLabel text;
+	private Button healthBar;
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -28,6 +31,13 @@ public class GameScreen extends Screen implements KeyListener {
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		text = new TextLabel(20, 150, 500, 40, "Some Text");
 		viewObjects.add(text);
+		healthBar = new Button(0, 0, 100, 20, "HP" + Player.getHP(), Color.RED, new Action() {
+
+			@Override
+			public void act() {
+
+			}
+		});
 
 	}
 
@@ -49,8 +59,8 @@ public class GameScreen extends Screen implements KeyListener {
 	}
 
 	private void move(int i, int j) {
-		int x = i + x;
-		int y = j + y;
+		x = i + x;
+		y = j + y;
 	}
 
 	@Override
@@ -65,9 +75,9 @@ public class GameScreen extends Screen implements KeyListener {
 		
 	}
 	
-	public void HealthBar(){
-		//show healthbar
-	}
+//	public void HealthBar(){
+//		//show healthbar
+//	}
 	
 	@Override
 	public void drawBackground(Graphics2D g){
@@ -76,7 +86,7 @@ public class GameScreen extends Screen implements KeyListener {
 		g.fillRect(0, 0, 800, 800);
 	}
 	
-	public void gameOver(){
+	public static void gameOver(){
 		//changeScreen
 	}
 
