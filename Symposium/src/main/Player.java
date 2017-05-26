@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.Timer;
 
-public class Player implements KeyListener{
+public class Player extends AnimatedComponent implements KeyListener{
 	
 	private static int hpoints;
 	private static boolean isAlive;
