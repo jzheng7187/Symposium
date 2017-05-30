@@ -76,9 +76,9 @@ public class Enemy extends AnimatedComponent implements ActionListener{
 //	}
 	
 	public void move(){
-		while(isAlive){
-			actionPerformed(move);
-		}
+//		while(isAlive){
+//			actionPerformed(move);
+//		}
 	}
 
 	@Override

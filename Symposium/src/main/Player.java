@@ -7,7 +7,9 @@ import java.awt.event.KeyListener;
 
 import javax.swing.Timer;
 
-public class Player extends AnimatedComponent implements KeyListener{
+import gui.components.AnimatedComponent;
+
+public class Player implements KeyListener{
 	
 	private static int hpoints;
 	private static boolean isAlive;
@@ -30,12 +32,12 @@ public class Player extends AnimatedComponent implements KeyListener{
 	
 	public void hit(){
 		//makes contact with enemy
-		if(){
-			hpoints -= (Math.random() * 5) + 1;
-			move(-15, 0);
-		}if(hpoints == 0){
-			isAlive = false;
-		}
+//		if(){
+//			hpoints -= (Math.random() * 5) + 1;
+//			move(-15, 0);
+//		}if(hpoints == 0){
+//			isAlive = false;
+//		}
 	} 
 	
 	public void death(){

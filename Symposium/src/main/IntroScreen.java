@@ -60,7 +60,7 @@ public class IntroScreen extends ClickableScreen implements MouseListener{
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		background = new Graphic(0, 0, 800, 800, "resources/background1.png");
+		background = new Graphic(0, 0, 800, 800, "resources/Background/background1.png");
 		viewObjects.add(background);
 		button = new Button(225, 375, 350, 200, "Button", new Color(100,100,250), new Action() {
 			

@@ -14,6 +14,7 @@ import gui.components.Visible;
 
 public class GameScreen extends Screen implements KeyListener {
 
+	private static GameOver GameOverScreen;
 	private int x = 15;
 	private int y = 450;
 	private int deltaX = 1;
@@ -38,7 +39,7 @@ public class GameScreen extends Screen implements KeyListener {
 
 			}
 		});
-
+		viewObjects.add(healthBar);
 	}
 
 	public KeyListener getKeyListener() {
@@ -87,7 +88,6 @@ public class GameScreen extends Screen implements KeyListener {
 	}
 	
 	public static void gameOver(){
-		//changeScreen
 	}
 
 }
