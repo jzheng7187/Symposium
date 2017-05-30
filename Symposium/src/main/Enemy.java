@@ -146,7 +146,7 @@ public class Enemy extends AnimatedComponent implements Action{
 	public void act() {
 		action.act();
 	}
-	//idk
+	
 	public void run(){
 		setRunning(true);
 		while(isRunning()){
