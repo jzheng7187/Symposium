@@ -11,8 +11,8 @@ import gui.components.AnimatedComponent;
 
 public class Player implements KeyListener{
 	
-	private static int hpoints;
-	private static boolean isAlive;
+	private static int hpoints = 100;
+	private static boolean isAlive = true;
 	private static Player player;
 	private int x = 0;
 	private int y = 0;
@@ -22,12 +22,6 @@ public class Player implements KeyListener{
 	public Player(int x, int y){
 		this.x = x;
 		this.y = y;
-	}
-	
-	public static void main(String[] args){
-		hpoints = 100;
-		isAlive = true;
-		player = new Player(500, 15);
 	}
 	
 	public void hit(){
@@ -51,9 +45,13 @@ public class Player implements KeyListener{
 		x = x + i;
 		y = y + j;
 	}
-	
-	public static int getHP(){
+
+	public static int getHpoints() {
 		return hpoints;
+	}
+
+	public static void setHpoints(int hpoints) {
+		Player.hpoints = hpoints;
 	}
 
 	@Override
@@ -81,5 +79,12 @@ public class Player implements KeyListener{
 		
 	}
 
+	public static boolean isAlive() {
+		return isAlive;
+	}
+	
+	public static void setAlive(boolean isAlive) {
+		Player.isAlive = isAlive;
+	}
 	
 }

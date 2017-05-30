@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import gui.Screen;
 import gui.components.Action;
 import gui.components.Button;
+import gui.components.Graphic;
 import gui.components.TextLabel;
 import gui.components.Visible;
 
@@ -22,6 +23,7 @@ public class GameScreen extends Screen implements KeyListener {
 	//private Sprite character;
 	private TextLabel text;
 	private Button healthBar;
+	private Graphic background;
 	
 	public GameScreen(int width, int height) {
 		super(width, height);
@@ -30,9 +32,11 @@ public class GameScreen extends Screen implements KeyListener {
 
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
-		text = new TextLabel(20, 150, 500, 40, "Some Text");
+		background = new Graphic(0, 0, 800, 650, "resources/Background/game_Back.png");
+		viewObjects.add(background);
+		text = new TextLabel(20, 150, 500, 40, "");
 		viewObjects.add(text);
-		healthBar = new Button(0, 0, 100, 20, "HP" + Player.getHP(), Color.RED, new Action() {
+		healthBar = new Button(150,650, 200, 50, "HP " + Player.getHpoints(), Color.RED, new Action() {
 
 			@Override
 			public void act() {
