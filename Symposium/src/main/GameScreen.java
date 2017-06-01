@@ -16,6 +16,7 @@ import gui.components.Visible;
 public class GameScreen extends Screen implements KeyListener {
 
 	private static GameOver GameOverScreen;
+	public static Player Player;
 	private int x = 15;
 	private int y = 450;
 	private int deltaX = 1;

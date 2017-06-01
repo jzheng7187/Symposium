@@ -54,6 +54,10 @@ the website I was using got shut down, but there is a downloaded version. I'm go
 making sprites for my program.
 
 5/30/17
-I have uploaded the sprites for the enemy and added the backgorund for the game screen. I am starting to animate the 
+I have uploaded the sprites for the enemy and added the background for the game screen. I am starting to animate the 
 enemy so that it can move across the screen independently from the player. I will upload the 
 player sprite, so that i can be able to move that object across the screen.
+
+6/1/17
+I continued to look at daniel goon's code as an example of how to code my game. I might have to seek advice from him from 
+time to time.

@@ -1,9 +1,11 @@
 package main;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.Timer;
 
@@ -18,10 +20,13 @@ public class Player implements KeyListener{
 	private int y = 0;
 	private int deltaX = 5;
 	private int deltaY = 20;
+	private Image image;
+	private ArrayList<Image> movement;
 	
 	public Player(int x, int y){
 		this.x = x;
 		this.y = y;
+		
 	}
 	
 	public void hit(){
@@ -85,6 +90,22 @@ public class Player implements KeyListener{
 	
 	public static void setAlive(boolean isAlive) {
 		Player.isAlive = isAlive;
+	}
+	
+	public int getWidth(){
+		return getWidth();
+	}
+	
+	public int getHeight(){
+		return getHeight();
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return x;
 	}
 	
 }

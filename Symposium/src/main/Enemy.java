@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import gui.components.Action;
 import gui.components.AnimatedComponent;
 
-public class Enemy extends AnimatedComponent implements Action{
+public class Enemy extends AnimatedComponent implements Action, Collided{
 
 	private static double hpoints;
 //	private static boolean isAlive;
@@ -28,6 +28,8 @@ public class Enemy extends AnimatedComponent implements Action{
 	private long checkRate;
 	private int w;
 	private int h;
+	private double Posy;
+	private double Posx;
 	
 	
 	public Enemy(int x, int y, int w, int h, double vx, double vy, String imageLocation) {
@@ -114,26 +116,23 @@ public class Enemy extends AnimatedComponent implements Action{
 	}
 	
 	private void setPosy(double d) {
-		// TODO Auto-generated method stub
+		this.Posy = d;
 		
 	}
 
 
 	private double getPosy() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Posy;
 	}
 
 
 	private void setPosx(double d) {
-		// TODO Auto-generated method stub
-		
+		this.Posx = d;
 	}
 
 
-	private int getPosx() {
-		// TODO Auto-generated method stub
-		return 0;
+	private double getPosx() {
+		return Posx;
 	}
 
 
@@ -158,5 +157,16 @@ public class Enemy extends AnimatedComponent implements Action{
 				e.printStackTrace();
 			}
 		}
+	}
+
+
+	@Override
+	public boolean collided() {
+		Player temp = GameScreen.Player;
+		if((temp.getX() + temp.getWidth() > getPosx())
+				&&(temp.getY() + temp.getHeight() > getPosy())){
+			
+		}
+		return false;
 	}
 }
