@@ -13,7 +13,7 @@ public class Enemy extends AnimatedComponent implements Action, Collided{
 	private static double hpoints;
 //	private static boolean isAlive;
 	private int x = 800;
-	private int deltaX = -15;
+	private double deltaX = -15;
 	private int y;
 	private double vx;
 	private double vy;

@@ -17,6 +17,7 @@ public class GameScreen extends Screen implements KeyListener {
 
 	private static GameOver GameOverScreen;
 	public static Player Player;
+	private static Screen Game.GameOverScreen;
 	private int x = 15;
 	private int y = 450;
 	private int deltaX = 1;
@@ -93,6 +94,7 @@ public class GameScreen extends Screen implements KeyListener {
 	}
 	
 	public static void gameOver(){
+		Game.scr.setScreen(Game.GameOverScreen);
 	}
 
 }

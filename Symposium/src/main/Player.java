@@ -41,8 +41,7 @@ public class Player implements KeyListener{
 	
 	public void death(){
 		if(isAlive == false){
-			GameScreen.gameOver();
-			//change screen to ending screen
+			Game.scr.setScreen(Game.GameOverScreen);
 		}
 	}
 	
@@ -106,6 +105,12 @@ public class Player implements KeyListener{
 
 	public int getY() {
 		return x;
+	}
+	
+	public void update(){
+		while(isAlive){
+			
+		}
 	}
 	
 }
