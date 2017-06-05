@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 import gui.components.AnimatedComponent;
@@ -22,13 +23,53 @@ public class Player implements KeyListener{
 	private int deltaY = 20;
 	private Image image;
 	private ArrayList<Image> movement;
+	private int w;
+	private int h;
+	private ArrayList<Image> frames;
+	private boolean load;
+	private String imageSrc;
+	private boolean jump;
 	
-	public Player(int x, int y){
+	public Player(int x, int y, int w, int h, String imageLocation){
+		super(x,y, w, h);
+		
 		this.x = x;
 		this.y = y;
+		this.w = w;
+		this.h = h;
+		this.hpoints = 100;
+		this.load = false;
+		this.jump = false;
+		
+		frames = new ArrayList<Image>();
+		setX(x);
+		setY(y);
 		
 	}
 	
+
+	private void loadImage() {
+		try{
+			image = new ImageIcon(imageSrc).getImage();
+			load = true;
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void setX(int x) {
+		this.x = x;
+		
+	}
+
+	private void setY(int y) {
+		this.y = y;
+		
+	}
+
 	public void hit(){
 		//makes contact with enemy
 //		if(){
@@ -91,6 +132,21 @@ public class Player implements KeyListener{
 		Player.isAlive = isAlive;
 	}
 	
+	public boolean isJump() {
+		return jump;
+	}
+	
+	public void setJump(boolean b) {
+		clear();
+		this.jump = b;
+	}
+	
+	private void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	public int getWidth(){
 		return getWidth();
 	}
@@ -113,4 +169,26 @@ public class Player implements KeyListener{
 		}
 	}
 	
+	public void setImgSrc(String src){
+		this.imageSrc = src;
+		loadImage();
+	}
+
+	public int getW() {
+		return w;
+	}
+
+	public void setW(int w) {
+		this.w = w;
+		update();
+	}
+
+	public int getH() {
+		return h;
+	}
+
+	public void setH(int h) {
+		this.h = h;
+		update();
+	}
 }
