@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +13,7 @@ import javax.swing.Timer;
 
 import gui.components.AnimatedComponent;
 
-public class Player implements KeyListener{
+public class Player extends AnimatedComponent implements KeyListener{
 	
 	private static int hpoints = 100;
 	private static boolean isAlive = true;
@@ -31,7 +32,7 @@ public class Player implements KeyListener{
 	private boolean jump;
 	
 	public Player(int x, int y, int w, int h, String imageLocation){
-		super(x,y, w, h);
+		super(x, y, w, h);
 		
 		this.x = x;
 		this.y = y;
@@ -60,25 +61,16 @@ public class Player implements KeyListener{
 		
 	}
 	
-	private void setX(int x) {
-		this.x = x;
-		
+	public void update(Graphics2D g){
+		if(load){
+			if(jump){
+				g.drawImage(image, 0, 0, getWidth(), getHeight(), 0,0,image.getWidth(null), image.getHeight(null), null);
+				setPosy(getPosy() + getVy());
+				super.setY((int)getPosy());
+			}
+		}
 	}
-
-	private void setY(int y) {
-		this.y = y;
-		
-	}
-
-	public void hit(){
-		//makes contact with enemy
-//		if(){
-//			hpoints -= (Math.random() * 5) + 1;
-//			move(-15, 0);
-//		}if(hpoints == 0){
-//			isAlive = false;
-//		}
-	} 
+	
 	
 	public void death(){
 		if(isAlive == false){
@@ -140,11 +132,6 @@ public class Player implements KeyListener{
 		clear();
 		this.jump = b;
 	}
-	
-	private void clear() {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	public int getWidth(){
@@ -191,4 +178,5 @@ public class Player implements KeyListener{
 		this.h = h;
 		update();
 	}
+
 }

@@ -59,6 +59,22 @@ public class MovingComponent extends Component implements Runnable {
 		this.running = running;
 	}
 
+	public double getPosx() {
+		return posx;
+	}
+
+	public void setPosx(double posx) {
+		this.posx = posx;
+	}
+
+	public double getPosy() {
+		return posy;
+	}
+
+	public void setPosy(double posy) {
+		this.posy = posy;
+	}
+	
 	@Override
 	public void run() {
 		posx = getX();

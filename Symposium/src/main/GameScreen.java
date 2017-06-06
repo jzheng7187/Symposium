@@ -101,7 +101,7 @@ public class GameScreen extends Screen implements KeyListener, Runnable {
 				@Override
 				public void act() {
 					if(Player.isAlive()){
-						enemy.move();
+
 					}
 				}
 			});
@@ -120,23 +120,19 @@ public class GameScreen extends Screen implements KeyListener, Runnable {
 	
 	
 	public static void gameOver(){
-//		Game.scr.setScreen(Game.GameOverScreen);
+		
 	}
 
 	@Override
 	public void run() {
 		enemies = (ArrayList<Enemy>) Collections.synchronizedList(new ArrayList<Enemy>());
 		while(Player.getHpoints() > 0){
-			updateHp();
 			score();
 			newEnemy();
 		}
 		gameOver();
 	}
 
-	private void updateHp() {
-		
-	}
 
 	public int getScore(){
 		return this.score;

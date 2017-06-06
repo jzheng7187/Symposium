@@ -39,7 +39,21 @@ public class AnimatedComponent extends MovingComponent {
 		return true;
 	}
 	
+	public int getCurrentFrame() {
+		return currentFrame;
+	}
 
+	public void setCurrentFrame(int currentFrame) {
+		this.currentFrame = currentFrame;
+	}
+
+	public boolean isRepeat() {
+		return repeat;
+	}
+
+	public static int getRefreshRate() {
+		return REFRESH_RATE;
+	}
 
 	public void addFrame(BufferedImage image, Integer time){
 		frame.add(image);

@@ -68,3 +68,7 @@ player loses by losing their health.
 
 6/5/17
 I added some code to the enemy class and the player class. I need it to incorporate score.
+
+6/6/17
+I added some more code to the GUI. I also started to fix some code within the Player, Enemy and the 
+GameScreen class.

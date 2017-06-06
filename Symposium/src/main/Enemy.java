@@ -76,27 +76,6 @@ public class Enemy extends AnimatedComponent implements Action, Collided{
 			e.printStackTrace();
 		}
 	}
-	
-//	public void hit(){
-//		if(//makes contact
-//		){
-//			hpoints--;
-//		}if(hpoints == 0){
-//			isAlive = false;
-//		}
-//	}
-//	
-//	public void dead(){
-//		if(isAlive = false){
-//			//image disappears
-//		}
-//	}
-	
-	public void move(){
-//		while(isAlive){
-//			actionPerformed(move);
-//		}
-	}
 
 	public void update(Graphics2D g){
 		if(load){
@@ -114,27 +93,6 @@ public class Enemy extends AnimatedComponent implements Action, Collided{
 			}
 		}
 	}
-	
-	private void setPosy(double d) {
-		this.Posy = d;
-		
-	}
-
-
-	private double getPosy() {
-		return Posy;
-	}
-
-
-	private void setPosx(double d) {
-		this.Posx = d;
-	}
-
-
-	private double getPosx() {
-		return Posx;
-	}
-
 
 	public void setAction(Action action){
 		this.action = action;
