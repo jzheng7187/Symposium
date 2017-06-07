@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -15,9 +16,8 @@ import gui.components.AnimatedComponent;
 
 public class Player extends AnimatedComponent implements KeyListener{
 	
-	private static int hpoints = 100;
-	private static boolean isAlive = true;
-	private static Player player;
+	private int hpoints = 100;
+	private boolean isAlive = true;
 	private int x = 0;
 	private int y = 0;
 	private int deltaX = 5;
@@ -42,10 +42,30 @@ public class Player extends AnimatedComponent implements KeyListener{
 		this.load = false;
 		this.jump = false;
 		
-		frames = new ArrayList<Image>();
+		addFrame(new BufferedImage(new ImageIcon("resources/Player/Luminous.png")), 500);
+	
 		setX(x);
 		setY(y);
-		
+		Thread gameover = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while(isAlive()){
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if(getHpoints() <= 0){
+						Game.scr.setScreen(Game.GameOverScreen);
+					}
+
+				}
+			}
+		}); 
+		play();
+		gameover.start();
 	}
 	
 
@@ -83,12 +103,12 @@ public class Player extends AnimatedComponent implements KeyListener{
 		y = y + j;
 	}
 
-	public static int getHpoints() {
+	public int getHpoints() {
 		return hpoints;
 	}
 
-	public static void setHpoints(int hpoints) {
-		Player.hpoints = hpoints;
+	public void setHpoints(int hpoints) {
+		this.hpoints = hpoints;
 	}
 
 	@Override
@@ -116,12 +136,12 @@ public class Player extends AnimatedComponent implements KeyListener{
 		
 	}
 
-	public static boolean isAlive() {
+	public boolean isAlive() {
 		return isAlive;
 	}
 	
-	public static void setAlive(boolean isAlive) {
-		Player.isAlive = isAlive;
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 	
 	public boolean isJump() {

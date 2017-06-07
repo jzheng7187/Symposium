@@ -120,11 +120,11 @@ public class Enemy extends AnimatedComponent implements Action, Collided{
 
 	@Override
 	public boolean collided() {
-		Player temp = GameScreen.Player;
-		if((temp.getX() + temp.getWidth() > getPosx())
-				&&(temp.getY() + temp.getHeight() > getPosy())){
-			
-		}
+//		Player temp = GameScreen.player;
+//		if((temp.getX() + temp.getWidth() > getPosx())
+//				&&(temp.getY() + temp.getHeight() > getPosy())){
+//			
+//		}
 		return false;
 	}
 }

@@ -7,7 +7,7 @@ public class Game extends GUIApplication {
 
 	public static Game scr;
 	public static Screen IntroScreen;
-	public static Screen GameScreen;
+	public static Screen gameScreen;
 	public static Screen GameOverScreen;
 	
 	public Game(int width, int height) {
@@ -17,7 +17,7 @@ public class Game extends GUIApplication {
 	@Override
 	public void initScreen() {
 		IntroScreen = new IntroScreen(getWidth(),getHeight());
-		GameScreen = new GameScreen(getWidth(),getHeight());
+		gameScreen = new GameScreen(getWidth(),getHeight());
 		GameOverScreen = new GameOver(getWidth(),getHeight());
 		setScreen(IntroScreen);
 	}

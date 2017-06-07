@@ -66,7 +66,7 @@ public class IntroScreen extends ClickableScreen implements MouseListener{
 			
 			@Override
 			public void act() {
-				Game.scr.setScreen(Game.GameScreen);
+				Game.scr.setScreen(Game.gameScreen);
 			}
 		});
 			viewObjects.add(button);
