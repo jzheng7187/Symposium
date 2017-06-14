@@ -16,21 +16,23 @@ import gui.components.Visible;
 
 public class GameScreen extends Screen implements KeyListener, Runnable {
 
-	private int x = 15;
-	private int y = 450;
-	private int deltaX = 1;
-	private int deltaY = 1;
+	private int deltaX; 
+	private int deltaY;
 	//private Sprite character;
 	private TextLabel text;
 	private Button healthBar;
-	private Graphic background;
 	private ArrayList<Enemy> enemies;
 	private Enemy enemy;
 	private int score = 0;
 	private Player player;
+	private Enemy slime;
+	private Graphic background;
 
 	public GameScreen(int width, int height) {
 		super(width, height);
+		
+		this.deltaX = 5;
+		this.deltaY = 20;
 
 	}
 
@@ -38,19 +40,26 @@ public class GameScreen extends Screen implements KeyListener, Runnable {
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		background = new Graphic(0, 0, 800, 650, "resources/Background/game_Back.png");
 		viewObjects.add(background);
+		
 		text = new TextLabel(600, 635, 150, 50, "Score " + score);
 		viewObjects.add(text);
-		player = new Player(10, 620, 100, 100, "resources/Player/player1.png");
+		
+		player = new Player(200, 370, 75, 75, "resources/Player/Luminous.png");
+		
 		healthBar = new Button(0,650, 400, 50, "HP " + player.getHpoints(), Color.RED, new Action() {
-
+			
 			@Override
 			public void act() {
-
+				
 			}
 		});
 		viewObjects.add(healthBar);
-
+		
+		player.play();
 		viewObjects.add(player);
+		
+		slime = new Enemy(200, 30, 75, 75, -5, 0, "resources/Enemy/slime.png");
+		viewObjects.add(slime);
 	}
 
 	public KeyListener getKeyListener() {
@@ -61,18 +70,13 @@ public class GameScreen extends Screen implements KeyListener, Runnable {
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 		if(code == KeyEvent.VK_UP){
-			move(0,deltaY);
+			player.move(0, deltaY);
 		}else if(code == KeyEvent.VK_LEFT){
-			move(-deltaX,0);
+			player.move(-deltaX,0);
 		}
 		else if(code == KeyEvent.VK_RIGHT){
-			move(deltaX,0);
+			player.move(deltaX,0);
 		}
-	}
-
-	private void move(int i, int j) {
-		x = i + x;
-		y = j + y;
 	}
 
 	@Override
@@ -87,29 +91,22 @@ public class GameScreen extends Screen implements KeyListener, Runnable {
 
 	}
 
-	@Override
-	public void drawBackground(Graphics2D g){
-		Color c = new Color(0,0,255);
-		g.setColor(c);
-		g.fillRect(0, 0, 800, 800);
-	}
-
 	public void newEnemy(){
-		double chance = ((enemies.size() > 0) ? Math.log((double) score) : 1000);
-		double rand = ((Math.random()) * 1000) - (score/ 1000);
-		if(chance < rand){
-			enemy  = new Enemy(800, 650, 50, 50, -5, 0, "resources/Enemy/slime1.png");
-			enemy.setAction(new Action(){
-				@Override
-				public void act() {
-					if(player.isAlive()){
-
-					}
-				}
-			});
-			enemies.add(enemy);
-			addObject(enemy);
-		}
+//		double chance = ((enemies.size() > 0) ? Math.log((double) score) : 1000);
+//		double rand = ((Math.random()) * 1000) - (score/ 1000);
+//		if(rand < chance){
+//			enemy  = new Enemy(800, 650, 50, 50, -5, 0, "resources/Enemy/slime1.png");
+//			enemy.setAction(new Action(){
+//				@Override
+//				public void act() {
+//					if(player.isAlive()){
+//						
+//					}
+//				}
+//			});
+//			enemies.add(enemy);
+//			addObject(enemy);
+//		}
 	}
 
 	private void score(){

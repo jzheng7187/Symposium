@@ -10,13 +10,9 @@ import gui.components.AnimatedComponent;
 
 public class Enemy extends AnimatedComponent implements Action, Collided{
 
-	private static double hpoints;
-//	private static boolean isAlive;
-	private int x = 800;
-	private double deltaX = -15;
+	//	private static boolean isAlive;
+	private int x;
 	private int y;
-	private double vx;
-	private double vy;
 	private String imageLoc;	
 	private boolean load;
 	private Action action;
@@ -34,18 +30,17 @@ public class Enemy extends AnimatedComponent implements Action, Collided{
 	
 	public Enemy(int x, int y, int w, int h, double vx, double vy, String imageLocation) {
 		super(x, y, w, h);
+		
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
-		this.vx = vx;
-		this.vy = vy;
+		this.currentFrame = 0;
 		this.imageLoc = imageLocation;
-		this.load = false;
+		load = false;
 		
 		slimeFrames = new ArrayList<Image>();
 		slimeFrames.add(image = new ImageIcon(imageLoc).getImage());
-		slimeFrames.add(image = new ImageIcon("resources/Enemy/slime1.png").getImage());
 		slimeFrames.add(image = new ImageIcon("resources/Enemy/slime2.png").getImage());
 		slimeFrames.add(image = new ImageIcon("resources/Enemy/slime3.png").getImage());
 		slimeFrames.add(image = new ImageIcon("resources/Enemy/slime4.png").getImage());
@@ -111,7 +106,6 @@ public class Enemy extends AnimatedComponent implements Action, Collided{
 				Thread.sleep(REFRESH_RATE);
 				update();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

@@ -2,34 +2,33 @@ package main;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.Timer;
-
 import gui.components.AnimatedComponent;
 
 public class Player extends AnimatedComponent implements KeyListener{
 	
-	private int hpoints = 100;
+	private int hpoints;
 	private boolean isAlive = true;
-	private int x = 0;
-	private int y = 0;
-	private int deltaX = 5;
-	private int deltaY = 20;
+	private int x;
+	private int y;
+	private int deltaX;
+	private int deltaY;
 	private Image image;
-	private ArrayList<Image> movement;
 	private int w;
 	private int h;
-	private ArrayList<Image> frames;
 	private boolean load;
-	private String imageSrc;
+	private String imageSrc = "resources/Player/Luminous.png";
 	private boolean jump;
+	private Graphics2D global;
+	private long startJump;
+	private double initialV;
+	private double grav;
+	private boolean damaged;
 	
 	public Player(int x, int y, int w, int h, String imageLocation){
 		super(x, y, w, h);
@@ -42,7 +41,11 @@ public class Player extends AnimatedComponent implements KeyListener{
 		this.load = false;
 		this.jump = false;
 		
-		addFrame(new BufferedImage(new ImageIcon("resources/Player/Luminous.png")), 500);
+		this.initialV = 9;
+		this.grav = 1.5;
+		
+		this.deltaX = 5;
+		this.deltaY = 20;
 	
 		setX(x);
 		setY(y);
@@ -64,6 +67,8 @@ public class Player extends AnimatedComponent implements KeyListener{
 				}
 			}
 		}); 
+		
+		loadImage();
 		play();
 		gameover.start();
 	}
@@ -83,10 +88,13 @@ public class Player extends AnimatedComponent implements KeyListener{
 	
 	public void update(Graphics2D g){
 		if(load){
+			global = g;
 			if(jump){
 				g.drawImage(image, 0, 0, getWidth(), getHeight(), 0,0,image.getWidth(null), image.getHeight(null), null);
 				setPosy(getPosy() + getVy());
 				super.setY((int)getPosy());
+			}else{
+				g.drawImage(image, 0, 0, getWidth(), getHeight(), 0,0,image.getWidth(null), image.getHeight(null), null);
 			}
 		}
 	}
@@ -99,10 +107,62 @@ public class Player extends AnimatedComponent implements KeyListener{
 	}
 	
 	public void move(int i, int j){
-		x = x + i;
-		y = y + j;
+		x = x + 40;
+		y = y + 0;
+	}
+	
+	public void checkBehaviors(){
+		if(jump){
+			long current = System.currentTimeMillis();
+			int difference = (int)(current - startJump);
+			double newV = initialV - grav*(double)(difference/100);
+			if(getY() > 372){
+				setJump(false);
+				setY(370);
+			}
+			else{
+				super.setVy(-newV);
+			}
+		}
 	}
 
+	public void run(){
+		setRunning(true);
+		while(isRunning()){
+			try {
+				Thread.sleep(REFRESH_RATE);
+				checkBehaviors();
+				if(damaged){
+					flicker(global);
+				}
+				else{
+					update();
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void flicker(Graphics2D g) {
+		try {
+			clear();
+			Thread.sleep(500);
+			g.drawImage(image, 0, 0, getWidth(), getHeight(), 0,0,image.getWidth(null), image.getHeight(null), null);
+			damaged = !damaged;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	public void play(){
+		if(!isRunning()){
+			Thread start = new Thread(this);
+			start.start();
+		}
+	}
+	
 	public int getHpoints() {
 		return hpoints;
 	}
@@ -115,7 +175,7 @@ public class Player extends AnimatedComponent implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 		if(code == KeyEvent.VK_SPACE){
-			move(0,deltaY);
+			move(0, deltaY);
 		}if(code == KeyEvent.VK_LEFT){
 			move(-deltaX,0);
 		}if(code == KeyEvent.VK_RIGHT){
@@ -144,36 +204,14 @@ public class Player extends AnimatedComponent implements KeyListener{
 		this.isAlive = isAlive;
 	}
 	
-	public boolean isJump() {
+	public boolean getJump() {
 		return jump;
 	}
 	
 	public void setJump(boolean b) {
 		clear();
-		this.jump = b;
-	}
-
-
-	public int getWidth(){
-		return getWidth();
-	}
-	
-	public int getHeight(){
-		return getHeight();
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return x;
-	}
-	
-	public void update(){
-		while(isAlive){
-			
-		}
+		jump = b;
+		startJump = System.currentTimeMillis();
 	}
 	
 	public void setImgSrc(String src){
@@ -197,6 +235,11 @@ public class Player extends AnimatedComponent implements KeyListener{
 	public void setH(int h) {
 		this.h = h;
 		update();
+	}
+	
+	public void setDamaged(boolean b) {
+		this.damaged = b;
+		
 	}
 
 }
