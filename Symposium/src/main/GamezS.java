@@ -15,15 +15,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Sample extends JPanel implements ActionListener, KeyListener{
+public class GamezS extends JPanel implements ActionListener, KeyListener{
 
 	Timer t = new Timer(5, this);
 	int x = 850;
 	int y = 680;
 	private double deltaX = 2;
 	private double deltaY = 2;
-	double deltaX1 = 0;
-	double deltaY1 = 2;
+	private double deltaX1 = 2;
+	private double deltaY1 = 0;
 	private Image l;
 	private int x1 = 0;
 	private int y1 = 650;
@@ -32,7 +32,7 @@ public class Sample extends JPanel implements ActionListener, KeyListener{
 	private int score;
 	private int hpoints = 100;
 	
-	public Sample(){
+	public GamezS(){
 		t.start();
 		addKeyListener(this);
 		setFocusable(true);
@@ -69,12 +69,12 @@ public class Sample extends JPanel implements ActionListener, KeyListener{
 		gg.setFont(new Font("Courier New", Font.PLAIN, 25));
 		gg.drawString("Health: " + hpoints , 125 , 160);
 		
-		if(deltaX > 0){
+		if(deltaX1 > 0){
 			ImageIcon player1 = new ImageIcon("resources/Player/luminous1.png");
 			l = player1.getImage();
 			gg.drawImage(l, x1, y1,this);
 		}
-		if(deltaX < 0){
+		if(deltaX1 < 0){
 			ImageIcon player1 = new ImageIcon("resources/Player/luminous.png");
 			l = player1.getImage();
 			gg.drawImage(l, x1, y1,this);
@@ -83,12 +83,6 @@ public class Sample extends JPanel implements ActionListener, KeyListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		x1 += deltaX1;
-		y1 += -deltaY1;
-		
-		x += -deltaX;
-		
 		if(x1 < 0){
 			deltaX1 = -deltaX1;
 		}
@@ -105,10 +99,13 @@ public class Sample extends JPanel implements ActionListener, KeyListener{
 			deltaY1 = -deltaY1;
 		}
 		
-		if(y1 > 651){
-			deltaY1 = 0;
+		if(y1 > 655){
+			y1 = 650;
 		}
 		
+		x1 += deltaX1;
+		y1 += deltaY1;
+		x += -deltaX;
 		repaint();
 		
 	}
@@ -117,11 +114,11 @@ public class Sample extends JPanel implements ActionListener, KeyListener{
 		int code = e.getKeyCode();	
 
 		if (code == KeyEvent.VK_W){
-			deltaY1 = 1; 
+			deltaY1 = -1; 
 		}
 
 		if (code == KeyEvent.VK_LEFT){
-			deltaX1 = 1;
+			deltaX1 = -1;
 		}
 
 		if (code == KeyEvent.VK_RIGHT){
