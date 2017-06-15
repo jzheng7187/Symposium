@@ -12,6 +12,7 @@ public class Graphic implements Visible {
 	private boolean loadedImages;
 	private int x;
 	private int y;
+	private Action action;
 	
 	/**
 	 * Full size graphic constructor
@@ -55,6 +56,14 @@ public class Graphic implements Visible {
 		loadImages(imageLocation,scale);
 	}
 	
+	public Graphic(int x, int y, double scale, String imageLocation, Action action) {
+		this.setX(x);
+		this.setY(y);
+		setLoadedImages(false);
+		loadImages(imageLocation,scale);
+		this.action = action;
+	}
+
 	private void loadImages(String imageLocation, double scale) {
 		try{
 			ImageIcon icon = new ImageIcon(imageLocation);
@@ -156,4 +165,7 @@ public class Graphic implements Visible {
 		this.loadedImages = loadedImages;
 	}
 
+	public void act(){
+		action.act();
+	}
 }

@@ -2,22 +2,25 @@ package main;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.*;
 import gui.components.AnimatedComponent;
 
-public class Player extends AnimatedComponent implements KeyListener{
+public class Player extends AnimatedComponent implements KeyListener, ActionListener{
 	
 	private int hpoints;
 	private boolean isAlive = true;
 	private int x;
 	private int y;
-	private int deltaX;
-	private int deltaY;
+	private double deltaX;
+	private double deltaY;
 	private Image image;
 	private int w;
 	private int h;
@@ -71,6 +74,7 @@ public class Player extends AnimatedComponent implements KeyListener{
 		loadImage();
 		play();
 		gameover.start();
+		
 	}
 	
 
@@ -99,16 +103,9 @@ public class Player extends AnimatedComponent implements KeyListener{
 		}
 	}
 	
-	
-	public void death(){
-		if(isAlive == false){
-			Game.scr.setScreen(Game.GameOverScreen);
-		}
-	}
-	
-	public void move(int i, int j){
-		x = x + 40;
-		y = y + 0;
+	public void move(double i, double j){
+			setX((int)(x + i));
+			setY((int)(y + j));
 	}
 	
 	public void checkBehaviors(){
@@ -116,9 +113,9 @@ public class Player extends AnimatedComponent implements KeyListener{
 			long current = System.currentTimeMillis();
 			int difference = (int)(current - startJump);
 			double newV = initialV - grav*(double)(difference/100);
-			if(getY() > 372){
+			if(getY() > 500){
 				setJump(false);
-				setY(370);
+				setY((int)(y- deltaY));
 			}
 			else{
 				super.setVy(-newV);
@@ -171,18 +168,18 @@ public class Player extends AnimatedComponent implements KeyListener{
 		this.hpoints = hpoints;
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		int code = e.getKeyCode();
-		if(code == KeyEvent.VK_SPACE){
-			move(0, deltaY);
-		}if(code == KeyEvent.VK_LEFT){
-			move(-deltaX,0);
-		}if(code == KeyEvent.VK_RIGHT){
-			move(deltaX,0);
-		}
-		
-	}
+//	@Override
+//	public void keyPressed(KeyEvent e) {
+//		int code = e.getKeyCode();
+//		if(code == KeyEvent.VK_SPACE){
+//			move(0, deltaY);
+//		}if(code == KeyEvent.VK_LEFT){
+//			move(-deltaX,0);
+//		}if(code == KeyEvent.VK_RIGHT){
+//			move(deltaX,0);
+//		}
+//		
+//	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
@@ -222,7 +219,7 @@ public class Player extends AnimatedComponent implements KeyListener{
 	public int getW() {
 		return w;
 	}
-
+	
 	public void setW(int w) {
 		this.w = w;
 		update();
@@ -242,4 +239,55 @@ public class Player extends AnimatedComponent implements KeyListener{
 		
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		x += deltaX;
+		y  += deltaY;
+
+		if(x<0){
+			deltaX = 0;
+			x = 0;
+		}
+
+		if(x>750){
+			deltaX = 0;
+			x = 750;
+		}
+
+		if(y<0){
+			deltaY = 0;
+			y = 0;
+		}
+	}
+
+	public void up(){
+		setX((int)(x + 0));
+		setY((int)(y + -50));
+	}
+
+	public void left(){
+		setX((int)(x + -50));
+		setY((int)(y + 0));
+	}
+
+	public void right(){
+		setX((int)(x + 50));
+		setY((int)(y + 0));
+	}
+
+	public void keyPressed(KeyEvent e){
+		int code = e.getKeyCode();
+
+		if (code == KeyEvent.VK_UP){
+			up();
+		}
+
+		if (code == KeyEvent.VK_LEFT){
+			left();
+		}
+
+		if (code == KeyEvent.VK_RIGHT){
+			right();
+		}
+	}
 }
+

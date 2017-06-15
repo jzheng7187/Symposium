@@ -2,13 +2,15 @@ package main;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import gui.components.Action;
 import gui.components.AnimatedComponent;
 
-public class Enemy extends AnimatedComponent implements Action, Collided{
+public class Enemy extends AnimatedComponent implements Action, ActionListener, Collided{
 
 	//	private static boolean isAlive;
 	private int x;
@@ -26,6 +28,7 @@ public class Enemy extends AnimatedComponent implements Action, Collided{
 	private int h;
 	private double Posy;
 	private double Posx;
+	private double deltaX = 2;
 	
 	
 	public Enemy(int x, int y, int w, int h, double vx, double vy, String imageLocation) {
@@ -114,11 +117,22 @@ public class Enemy extends AnimatedComponent implements Action, Collided{
 
 	@Override
 	public boolean collided() {
-//		Player temp = GameScreen.player;
-//		if((temp.getX() + temp.getWidth() > getPosx())
-//				&&(temp.getY() + temp.getHeight() > getPosy())){
-//			
+//		Player playTemp = Game.gameScreen.player;
+//		if (((playTemp.getX() + playTemp.getWidth()) > getPosx())
+//				&& (playTemp.getX() + playTemp.getWidth()) < (getPosx() + w)
+//				&& (playTemp.getY() + playTemp.getHeight()) > getPosy()) {
+//			return true;
 //		}
 		return false;
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(x < 0 || x > 750){
+			deltaX  = -deltaX;
+		}
+		x += deltaX;
+		
 	}
 }
